@@ -8,7 +8,9 @@ require('./config/database');
 const app = express();
 
 app.use(logger('dev'));
-app.use(express.json())
+app.use(express.json());
+
+app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 
 // Configure to use port 3001 instead of 3000 during
 // development to avoid collision with React's dev server
@@ -24,6 +26,7 @@ app.use(require('./config/checkToken'));
 
 // Put API routes here, before the "catch all" route
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/restaurants', require('./routes/api/restaurants'))
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

@@ -1,10 +1,14 @@
 import './App.css';
 import {useState} from "react";
-import NewOrderPage from "../NewOrderPage/NewOrderPage";
+// import NewOrderPage from "../NewOrderPage/NewOrderPage";
 import AuthPage from "../AuthPage/AuthPage";
+import About from "../About/About";
+import Restaurant from "../Restaurant/Restaurant";
+import RestaurantDetails from "../RestaurantDetails/RestaurantDetails";
+// import Profile from "../Profile/Profile";
 import {Route, Switch, Redirect} from "react-router-dom";
 import { getUser } from '../../utilities/users-service';
-import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
+// import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 import NavBar from "../../components/NavBar/NavBar";
 
 export default function App() {
@@ -13,13 +17,17 @@ export default function App() {
             {user ? <>
                 <NavBar user={user} setUser={setUser}/>
                 <Switch>
-                    <Route path="/orders/new">
-                        <NewOrderPage/>
+                    <Route path="/about">
+                        <About user={user}/>
                     </Route>
-                    <Route path="/orders">
-                        <OrderHistoryPage/>
+                    <Route path="/details/:id">
+                        <RestaurantDetails/>
                     </Route>
-                    <Redirect to="/orders"/>
+                    <Route path="/restaurant">
+                        
+                        <Restaurant />
+                    </Route>
+                    <Redirect to="/restaurant"/>
                 </Switch>
             </> : <AuthPage setUser={setUser}/>}
         </main>);
